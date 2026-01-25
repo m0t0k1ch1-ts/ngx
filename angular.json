@@ -4,7 +4,70 @@
   "cli": {
     "packageManager": "npm"
   },
-  "newProjectRoot": "projects",
   "projects": {
+    "ngx": {
+      "projectType": "library",
+      "root": "libs/ngx",
+      "sourceRoot": "libs/ngx/src",
+      "prefix": "x",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "prod": {
+              "tsConfig": "libs/ngx/tsconfig.lib.prod.json"
+            },
+            "dev": {
+              "tsConfig": "libs/ngx/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "dev"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "libs/ngx/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "playground": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/playground",
+      "sourceRoot": "apps/playground/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "apps/playground/src/main.ts",
+            "tsConfig": "apps/playground/tsconfig.app.json",
+            "assets": ["apps/playground/src/assets"],
+            "styles": ["apps/playground/src/styles.css"]
+          },
+          "configurations": {
+            "dev": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "dev"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "dev": {
+              "buildTarget": "playground:build:dev"
+            }
+          },
+          "defaultConfiguration": "dev"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        }
+      }
+    }
   }
 }
