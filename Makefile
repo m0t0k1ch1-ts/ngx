@@ -12,6 +12,7 @@ commit:
 .PHONY: build-prod
 build-prod:
 	pnpm ng build ngx -c prod
+	pnpm ng build playground -c prod
 
 .PHONY: publish
 publish:
