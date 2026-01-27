@@ -9,10 +9,7 @@ deps:
 commit:
 	pnpm cz
 
-.PHONY: build
-build:
-	pnpm ng build ngx -c prod
-
 .PHONY: playground
 playground:
+	pnpm ng build ngx
 	pnpm ng serve playground
