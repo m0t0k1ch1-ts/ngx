@@ -1,8 +1,8 @@
-x-toast.enter {
+div.overlay.enter {
   animation: enter 300ms ease-out;
 }
 
-x-toast.leave {
+div.overlay.leave {
   opacity: 0;
   transition: opacity 300ms ease-in;
 }
@@ -10,10 +10,8 @@ x-toast.leave {
 @keyframes enter {
   from {
     opacity: 0;
-    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
