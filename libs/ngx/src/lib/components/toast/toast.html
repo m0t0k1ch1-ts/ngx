@@ -1,10 +1,28 @@
 @let toast = toastSignal();
 
-<div class="flex w-full flex-row p-4">
-  <div></div>
-  <div class="flex grow flex-col gap-2 text-sm">
-    <span class="font-bold">{{ toast.title }}</span>
-    <span>{{ toast.message }}</span>
+@let iconName = iconNameSignal();
+@let iconColor = iconColorSignal();
+
+<div
+  class="flex flex-row gap-2 rounded-lg border bg-white/95 p-4 drop-shadow-xs"
+  [class.border-red-100]="toast.type === 'ERROR'"
+>
+  @if (iconName !== null && iconColor !== null) {
+    <div>
+      <ng-icon [name]="iconName" size="20px" [color]="iconColor" />
+    </div>
+  }
+  <div class="flex min-w-0 grow flex-col gap-2 text-sm">
+    <span class="font-bold" [class.text-red-500]="toast.type === 'ERROR'">{{ toast.title }}</span>
+    <span class="wrap-break-word">{{ toast.message }}</span>
   </div>
-  <div></div>
+  <div>
+    <ng-icon
+      name="heroXMarkSolid"
+      size="20px"
+      color="#99a1af"
+      class="cursor-pointer"
+      (click)="onClickCloseButton()"
+    />
+  </div>
 </div>
