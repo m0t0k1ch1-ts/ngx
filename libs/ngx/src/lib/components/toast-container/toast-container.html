@@ -1,0 +1,7 @@
+@let toasts = toastsSignal();
+
+<div class="flex flex-col gap-2 p-2">
+  @for (toast of toasts; track toast.id) {
+    <x-toast [toast]="toast" animate.enter="enter" animate.leave="leave" />
+  }
+</div>

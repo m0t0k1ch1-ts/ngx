@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
-import { X } from 'ngx';
+import { ToastContainerComponent, ToastService } from 'ngx';
 
 @Component({
   selector: 'app-root',
-  imports: [X],
+  imports: [ToastContainerComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App {}
+export class App {
+  private readonly toastService = inject(ToastService);
+
+  public onClickAddErrorToastButton(): void {
+    this.toastService.add({
+      type: 'ERROR',
+      title: 'ERROR',
+      message: 'something went wrong',
+      lifetime: 5_000,
+    });
+  }
+}

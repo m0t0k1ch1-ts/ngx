@@ -1,3 +1,15 @@
-<div class="flex h-dvh flex-col items-center justify-center">
-  <x />
+<div class="flex flex-col gap-8 p-8">
+  <h1 class="text-center text-2xl font-bold">ngx playground</h1>
+  <div class="flex flex-col gap-4">
+    <div class="panel">
+      <h2>Toast</h2>
+      <div class="flex flex-col items-center">
+        <button class="primary" (click)="onClickAddErrorToastButton()">Error</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fixed bottom-0 z-50 w-dvw">
+  <x-toast-container />
 </div>

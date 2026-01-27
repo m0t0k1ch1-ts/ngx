@@ -1,0 +1,13 @@
+@reference "../styles.css";
+
+div.panel {
+  @apply flex flex-col gap-4 rounded-lg bg-white p-4;
+}
+
+h2 {
+  @apply text-center text-xl font-bold;
+}
+
+button.primary {
+  @apply h-10 cursor-pointer touch-manipulation rounded-lg bg-emerald-500 px-4 font-bold text-white transition select-none active:translate-y-px active:scale-[0.99] active:bg-emerald-600;
+}
