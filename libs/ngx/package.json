@@ -1,6 +1,9 @@
 {
   "name": "@m0t0k1ch1/ngx",
-  "version": "0.0.0",
+  "version": "0.1.1",
+  "license": "MIT",
+  "author": "m0t0k1ch1",
+  "repository": "github:m0t0k1ch1-ts/ngx",
   "dependencies": {
     "tslib": "^2.8.1"
   },

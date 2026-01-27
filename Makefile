@@ -9,6 +9,14 @@ deps:
 commit:
 	pnpm cz
 
+.PHONY: build-prod
+build-prod:
+	pnpm ng build ngx -c prod
+
+.PHONY: publish
+publish:
+	cd dist/ngx && pnpm publish --access public --no-git-checks
+
 .PHONY: playground
 playground:
 	pnpm ng build ngx
