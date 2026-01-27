@@ -1,0 +1,41 @@
+circle {
+  animation:
+    color-cycle 5s linear infinite,
+    dash 1.5s ease-in-out infinite;
+}
+
+@keyframes color-cycle {
+  0% {
+    stroke: oklch(62.3% 0.214 259.815); /* blue-500 */
+  }
+  20% {
+    stroke: oklch(71.5% 0.143 215.221); /* cyan-500 */
+  }
+  40% {
+    stroke: oklch(69.6% 0.17 162.48); /* emerald-500 */
+  }
+  60% {
+    stroke: oklch(76.9% 0.188 70.08); /* amber-500 */
+  }
+  80% {
+    stroke: oklch(64.5% 0.246 16.439); /* rose-500 */
+  }
+  100% {
+    stroke: oklch(62.3% 0.214 259.815); /* blue-500 */
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 250;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 175, 250;
+    stroke-dashoffset: -125;
+  }
+  100% {
+    stroke-dasharray: 1, 250;
+    stroke-dashoffset: -250;
+  }
+}

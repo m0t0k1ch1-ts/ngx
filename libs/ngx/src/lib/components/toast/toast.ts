@@ -31,7 +31,7 @@ export class ToastComponent {
   public readonly iconColorSignal = computed(() => {
     switch (this.toastSignal().type) {
       case 'ERROR':
-        return '#fb2c36'; // text-red-500
+        return 'oklch(63.7% 0.237 25.331)'; // red-500
       default:
         return null;
     }
