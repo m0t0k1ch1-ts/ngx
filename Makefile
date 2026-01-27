@@ -7,7 +7,7 @@ deps:
 
 .PHONY: commit
 commit:
-	pnpm cz
+	pnpm czg
 
 .PHONY: build-prod
 build-prod:
