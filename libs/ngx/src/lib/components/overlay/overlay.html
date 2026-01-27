@@ -1,0 +1,14 @@
+@let isVisible = isVisibleSignal();
+
+@let zIndex = zIndexSignal();
+
+@if (isVisible) {
+  <div
+    class="overlay fixed inset-0 flex flex-col items-center justify-center bg-black/50"
+    [style.z-index]="zIndex"
+    animate.enter="enter"
+    animate.leave="leave"
+  >
+    <ng-content />
+  </div>
+}
