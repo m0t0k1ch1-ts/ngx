@@ -1,0 +1,10 @@
+@let toast = toastSignal();
+
+<div class="flex w-full flex-row p-4">
+  <div></div>
+  <div class="flex grow flex-col gap-2 text-sm">
+    <span class="font-bold">{{ toast.title }}</span>
+    <span>{{ toast.message }}</span>
+  </div>
+  <div></div>
+</div>

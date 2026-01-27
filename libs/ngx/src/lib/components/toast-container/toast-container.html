@@ -1,0 +1,7 @@
+@let toasts = toastsSignal();
+
+<div class="flex flex-col gap-2">
+  @for (toast of toasts; track toast.id) {
+    <x-toast [toast]="toast" />
+  }
+</div>

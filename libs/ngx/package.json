@@ -6,7 +6,8 @@
   },
   "peerDependencies": {
     "@angular/common": "^21.1.1",
-    "@angular/core": "^21.1.1"
+    "@angular/core": "^21.1.1",
+    "tailwindcss": "^4.1.18"
   },
   "sideEffects": false
 }
