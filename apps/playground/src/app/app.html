@@ -28,6 +28,8 @@
   <button class="primary" (click)="onClickHideOverlayButton()">Hide</button>
 </x-overlay>
 
-<div class="fixed bottom-0 z-50 w-dvw">
-  <x-toast-container />
+<div class="fixed bottom-0 z-50 flex w-dvw flex-col items-center">
+  <div class="w-full max-w-5xl">
+    <x-toast-container />
+  </div>
 </div>
