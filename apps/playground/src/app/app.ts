@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 
-import { OverlayComponent, ToastContainerComponent, ToastService } from 'ngx';
+import { LoaderComponent, OverlayComponent, ToastContainerComponent, ToastService } from 'ngx';
 
 @Component({
   selector: 'app-root',
-  imports: [OverlayComponent, ToastContainerComponent],
+  imports: [LoaderComponent, OverlayComponent, ToastContainerComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
