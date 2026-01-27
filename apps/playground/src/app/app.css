@@ -5,7 +5,7 @@ div.panel {
 }
 
 h2 {
-  @apply text-center text-2xl font-bold;
+  @apply text-center text-xl font-bold;
 }
 
 button.primary {
