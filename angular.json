@@ -47,6 +47,21 @@
             "styles": ["apps/playground/src/styles.css"]
           },
           "configurations": {
+            "prod": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "dev": {
               "optimization": false,
               "extractLicenses": false,
