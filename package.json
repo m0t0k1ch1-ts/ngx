@@ -13,7 +13,10 @@
     "@fontsource-variable/outfit": "5.2.8",
     "@ng-icons/core": "33.0.0",
     "@ng-icons/heroicons": "33.0.0",
+    "@tailwindcss/postcss": "4.1.18",
+    "postcss": "8.5.6",
     "rxjs": "7.8.2",
+    "tailwindcss": "4.1.18",
     "tslib": "2.8.1"
   },
   "devDependencies": {
@@ -23,14 +26,11 @@
     "@commitlint/cli": "20.3.1",
     "@commitlint/config-conventional": "20.3.1",
     "@commitlint/types": "20.3.1",
-    "@tailwindcss/postcss": "4.1.18",
     "czg": "1.12.0",
     "husky": "9.1.7",
     "jsdom": "27.4.0",
     "ng-packagr": "21.1.0",
-    "postcss": "8.5.6",
     "prettier-plugin-tailwindcss": "0.7.2",
-    "tailwindcss": "4.1.18",
     "typescript": "5.9.3",
     "vitest": "4.0.18"
   },
