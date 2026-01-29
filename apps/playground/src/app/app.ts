@@ -11,6 +11,8 @@ import { LoaderComponent, OverlayComponent, ToastContainerComponent, ToastServic
 export class App {
   private readonly toastService = inject(ToastService);
 
+  public userAgent = navigator.userAgent;
+
   public isOverlayVisibleSignal = signal<boolean>(false);
 
   public onClickShowOverlayButton(): void {
