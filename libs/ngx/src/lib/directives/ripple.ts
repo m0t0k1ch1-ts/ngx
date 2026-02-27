@@ -53,13 +53,15 @@ export class RippleDirective implements AfterViewInit {
 
     this.renderer.appendChild(this.elementRef.nativeElement, ink);
 
-    let cleanupTimeout: ReturnType<typeof setTimeout> | undefined;
+    // Fallback for animationend, which does not fire when the element is removed from the DOM.
+    // e.g. via content projection inside @if.
+    let animationTimeoutID: number | undefined;
 
     const removeMousedownListener = this.renderer.listen(
       this.elementRef.nativeElement,
       'mousedown',
       (event: MouseEvent) => {
-        clearTimeout(cleanupTimeout);
+        clearTimeout(animationTimeoutID);
         ink.classList.remove('x-ink-active');
 
         if (ink.offsetWidth === 0 && ink.offsetHeight === 0) {
@@ -78,17 +80,17 @@ export class RippleDirective implements AfterViewInit {
         ink.style.top = `${event.clientY - rect.top - ink.offsetHeight / 2}px`;
 
         ink.classList.add('x-ink-active');
-        cleanupTimeout = setTimeout(() => ink.classList.remove('x-ink-active'), 401);
+        animationTimeoutID = setTimeout(() => ink.classList.remove('x-ink-active'), 401);
       },
     );
 
     const removeAnimationendListener = this.renderer.listen(ink, 'animationend', () => {
-      clearTimeout(cleanupTimeout);
+      clearTimeout(animationTimeoutID);
       ink.classList.remove('x-ink-active');
     });
 
     this.destroyRef.onDestroy(() => {
-      clearTimeout(cleanupTimeout);
+      clearTimeout(animationTimeoutID);
       removeMousedownListener();
       removeAnimationendListener();
       ink.remove();
