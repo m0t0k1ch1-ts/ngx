@@ -1,6 +1,6 @@
 {
   "name": "@m0t0k1ch1/ngx",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "author": "m0t0k1ch1",
   "repository": "github:m0t0k1ch1-ts/ngx",
@@ -8,11 +8,11 @@
     "tslib": "^2.8.1"
   },
   "peerDependencies": {
-    "@angular/common": "^21.1.1",
-    "@angular/core": "^21.1.1",
-    "@ng-icons/core": "^33.0.0",
-    "@ng-icons/heroicons": "^33.0.0",
-    "tailwindcss": "^4.1.18"
+    "@angular/common": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@ng-icons/core": "^33.1.0",
+    "@ng-icons/heroicons": "^33.1.0",
+    "tailwindcss": "^4.2.1"
   },
   "sideEffects": false
 }
