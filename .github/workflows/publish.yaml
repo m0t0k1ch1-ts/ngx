@@ -12,16 +12,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Set up pnpm
-        run: corepack enable pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          cache: true
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: lts/*
-          cache: pnpm
+          node-version: 24
           registry-url: https://registry.npmjs.org
       - name: Install dependencies
         run: make deps
       - name: Build
-        run: make build-prod
+        run: make build/prod
       - name: Publish
         run: make publish
