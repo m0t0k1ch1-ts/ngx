@@ -9,8 +9,8 @@ deps:
 commit:
 	pnpm czg
 
-.PHONY: build-prod
-build-prod:
+.PHONY: build/prod
+build/prod:
 	pnpm ng build ngx -c prod
 	pnpm ng build playground -c prod
 
