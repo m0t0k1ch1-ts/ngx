@@ -7,8 +7,8 @@ import {
   heroXMarkSolid,
 } from '@ng-icons/heroicons/solid';
 
-import { ToastService } from '../../services';
-import { Toast } from '../../types';
+import { ToastService } from 'ngx/services';
+import { Toast } from 'ngx/types';
 
 @Component({
   selector: 'x-toast',

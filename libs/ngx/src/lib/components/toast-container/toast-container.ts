@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 
-import { ToastService } from '../../services';
+import { ToastService } from 'ngx/services';
 
 import { ToastComponent } from '../toast/toast';
 

@@ -1,6 +1,6 @@
 import { Service, signal } from '@angular/core';
 
-import { Toast } from '../types';
+import { Toast } from 'ngx/types';
 
 @Service()
 export class ToastService {
