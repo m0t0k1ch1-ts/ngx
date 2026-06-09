@@ -1,10 +1,8 @@
-import { Injectable, signal } from '@angular/core';
+import { Service, signal } from '@angular/core';
 
 import { Toast } from '../types';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class ToastService {
   private lastToastID = 0;
   private readonly toastIDToTimeoutID = new Map<number, number>();
