@@ -29,6 +29,15 @@ export class App {
     this.isOverlayVisibleSignal.set(false);
   }
 
+  public onClickAddSuccessToastButton(): void {
+    this.toastService.add({
+      type: 'SUCCESS',
+      title: 'SUCCESS',
+      message: 'something succeeded',
+      lifetime: 5_000,
+    });
+  }
+
   public onClickAddErrorToastButton(): void {
     this.toastService.add({
       type: 'ERROR',
