@@ -5,6 +5,7 @@
 
 <div
   class="flex flex-row gap-2 rounded-lg border bg-white/95 p-4 drop-shadow-xs"
+  [class.border-green-100]="toast.type === 'SUCCESS'"
   [class.border-red-100]="toast.type === 'ERROR'"
 >
   @if (iconName !== null && iconColor !== null) {
@@ -13,7 +14,13 @@
     </div>
   }
   <div class="flex min-w-0 grow flex-col gap-2 text-sm">
-    <span class="font-bold" [class.text-red-500]="toast.type === 'ERROR'">{{ toast.title }}</span>
+    <span
+      class="font-bold"
+      [class.text-green-500]="toast.type === 'SUCCESS'"
+      [class.text-red-500]="toast.type === 'ERROR'"
+    >
+      {{ toast.title }}
+    </span>
     <span class="wrap-break-word">{{ toast.message }}</span>
   </div>
   <div>
