@@ -19,7 +19,7 @@
               </div>
             }
           </div>
-          <button type="submit" xRipple class="primary">Submit</button>
+          <button type="submit" xRipple class="default">Submit</button>
         </div>
       </form>
     </div>
@@ -32,16 +32,16 @@
     <div class="panel">
       <h2>Overlay</h2>
       <div class="flex flex-col items-center">
-        <button xRipple class="primary" (click)="onClickShowOverlayButton()">Show</button>
+        <button xRipple class="default" (click)="onClickShowOverlayButton()">Show</button>
       </div>
     </div>
     <div class="panel">
       <h2>Toast</h2>
       <div class="flex flex-col items-center gap-2">
-        <button xRipple class="primary w-32" (click)="onClickAddSuccessToastButton()">
+        <button xRipple class="default w-32" (click)="onClickAddSuccessToastButton()">
           Add SUCCESS
         </button>
-        <button xRipple class="primary w-32" (click)="onClickAddErrorToastButton()">
+        <button xRipple class="default w-32" (click)="onClickAddErrorToastButton()">
           Add ERROR
         </button>
       </div>
@@ -53,7 +53,7 @@
 </div>
 
 <x-overlay [isVisible]="isOverlayVisible">
-  <button xRipple class="primary" (click)="onClickHideOverlayButton()">Hide</button>
+  <button xRipple class="default" (click)="onClickHideOverlayButton()">Hide</button>
 </x-overlay>
 
 <div class="fixed bottom-0 z-50 flex w-dvw flex-col items-center">

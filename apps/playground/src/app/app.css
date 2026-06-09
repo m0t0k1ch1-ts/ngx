@@ -8,7 +8,7 @@ h2 {
   @apply text-center font-medium;
 }
 
-button.primary {
+button.default {
   @apply h-10 cursor-pointer touch-manipulation rounded-lg border-b-2 border-b-gray-600 bg-gray-500 px-4 text-sm font-medium text-white transition select-none active:translate-y-px active:scale-[0.99];
   --x-ripple-color: rgba(255, 255, 255, 0.3);
 }
