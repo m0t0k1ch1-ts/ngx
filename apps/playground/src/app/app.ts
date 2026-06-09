@@ -1,6 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
+import { FormField, FormRoot, form, validateStandardSchema } from '@angular/forms/signals';
+
+import { z } from 'zod';
 
 import {
+  InputTextDirective,
   LoaderComponent,
   OverlayComponent,
   RippleDirective,
@@ -8,18 +12,57 @@ import {
   ToastService,
 } from 'ngx';
 
+const formSchema = z.object({
+  name: z.string().nonempty({
+    error: 'Required',
+  }),
+});
+
+type FormInput = z.infer<typeof formSchema>;
+
 @Component({
   selector: 'app-root',
-  imports: [LoaderComponent, OverlayComponent, RippleDirective, ToastContainerComponent],
+  imports: [
+    FormField,
+    FormRoot,
+    InputTextDirective,
+    LoaderComponent,
+    OverlayComponent,
+    RippleDirective,
+    ToastContainerComponent,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
   private readonly toastService = inject(ToastService);
 
-  public userAgent = navigator.userAgent;
+  public readonly userAgent = navigator.userAgent;
 
-  public isOverlayVisibleSignal = signal<boolean>(false);
+  private readonly formModel = signal<FormInput>({
+    name: '',
+  });
+
+  public readonly form = form(
+    this.formModel,
+    (schemaPath) => {
+      return validateStandardSchema(schemaPath, formSchema);
+    },
+    {
+      submission: {
+        action: async (field) => {
+          this.toastService.add({
+            type: 'SUCCESS',
+            title: 'Form Submitted',
+            message: `Hello, ${field().value().name}!`,
+            lifetime: 5_000,
+          });
+        },
+      },
+    },
+  );
+
+  public readonly isOverlayVisibleSignal = signal<boolean>(false);
 
   public onClickShowOverlayButton(): void {
     this.isOverlayVisibleSignal.set(true);
