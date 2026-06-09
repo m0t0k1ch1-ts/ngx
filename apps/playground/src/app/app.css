@@ -9,6 +9,8 @@ h2 {
 }
 
 button.default {
-  @apply h-10 cursor-pointer touch-manipulation rounded-lg border-b-2 border-b-gray-600 bg-gray-500 px-4 text-sm font-medium text-white transition select-none active:translate-y-px active:scale-[0.99];
+  @apply h-10 cursor-pointer touch-manipulation rounded-lg px-4 text-sm font-medium transition select-none not-active:border-b-2;
+  @apply active:translate-y-px active:scale-[0.99] active:border-b;
+  @apply border-b-gray-600 bg-gray-500 text-white;
   --x-ripple-color: rgba(255, 255, 255, 0.3);
 }
