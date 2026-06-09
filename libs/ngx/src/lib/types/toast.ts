@@ -1,6 +1,4 @@
-const VALID_TOAST_TYPES = ['ERROR'] as const;
-
-export type ToastType = (typeof VALID_TOAST_TYPES)[number];
+export type ToastType = 'SUCCESS' | 'ERROR';
 
 export type Toast = {
   id: number;

@@ -1,7 +1,11 @@
 import { Component, computed, inject, input } from '@angular/core';
 
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { heroExclamationCircleSolid, heroXMarkSolid } from '@ng-icons/heroicons/solid';
+import {
+  heroCheckCircleSolid,
+  heroExclamationCircleSolid,
+  heroXMarkSolid,
+} from '@ng-icons/heroicons/solid';
 
 import { ToastService } from '../../services';
 import { Toast } from '../../types';
@@ -11,7 +15,7 @@ import { Toast } from '../../types';
   imports: [NgIcon],
   templateUrl: './toast.html',
   styleUrl: './toast.css',
-  providers: [provideIcons({ heroExclamationCircleSolid, heroXMarkSolid })],
+  providers: [provideIcons({ heroCheckCircleSolid, heroExclamationCircleSolid, heroXMarkSolid })],
 })
 export class ToastComponent {
   private readonly toastService = inject(ToastService);
@@ -22,6 +26,8 @@ export class ToastComponent {
 
   public readonly iconNameSignal = computed(() => {
     switch (this.toastSignal().type) {
+      case 'SUCCESS':
+        return 'heroCheckCircleSolid';
       case 'ERROR':
         return 'heroExclamationCircleSolid';
       default:
@@ -30,6 +36,8 @@ export class ToastComponent {
   });
   public readonly iconColorSignal = computed(() => {
     switch (this.toastSignal().type) {
+      case 'SUCCESS':
+        return 'oklch(72.3% 0.219 149.579)'; // green-500
       case 'ERROR':
         return 'oklch(63.7% 0.237 25.331)'; // red-500
       default:
