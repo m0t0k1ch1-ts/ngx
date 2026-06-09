@@ -21,8 +21,7 @@
             "dev": {
               "tsConfig": "libs/ngx/tsconfig.lib.json"
             }
-          },
-          "defaultConfiguration": "dev"
+          }
         },
         "test": {
           "builder": "@angular/build:unit-test",
@@ -68,8 +67,7 @@
               "extractLicenses": false,
               "sourceMap": true
             }
-          },
-          "defaultConfiguration": "dev"
+          }
         },
         "serve": {
           "builder": "@angular/build:dev-server",
@@ -77,8 +75,7 @@
             "dev": {
               "buildTarget": "playground:build:dev"
             }
-          },
-          "defaultConfiguration": "dev"
+          }
         },
         "test": {
           "builder": "@angular/build:unit-test"
