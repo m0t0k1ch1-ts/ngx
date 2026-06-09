@@ -3,7 +3,7 @@ import { Directive, computed, input } from '@angular/core';
 @Directive({
   selector: '[xInputText]',
   host: {
-    class: 'block rounded-md border px-3 py-2 transition-colors outline-none focus:ring-1',
+    class: 'block rounded-lg border px-3 py-2 transition-colors outline-none focus:ring-1',
     '[class.border-gray-300]': '!touchedAndInvalidSignal()',
     '[class.border-red-400]': 'touchedAndInvalidSignal()',
     '[class.focus:border-blue-400]': '!touchedAndInvalidSignal()',
