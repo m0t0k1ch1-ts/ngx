@@ -4,7 +4,9 @@ import {
   ElementRef,
   Renderer2,
   afterNextRender,
+  effect,
   inject,
+  input,
 } from '@angular/core';
 
 @Directive({
@@ -18,8 +20,16 @@ export class RippleDirective {
   private readonly elementRef: ElementRef<HTMLElement> = inject(ElementRef);
   private readonly renderer = inject(Renderer2);
 
+  public readonly colorSignal = input<string | undefined>(undefined, {
+    alias: 'xRippleColor',
+  });
+
+  private ink: HTMLElement | undefined;
+
   constructor() {
     afterNextRender(() => {
+      const color = this.colorSignal();
+
       const styleID = 'x-ripple-style';
       if (this.elementRef.nativeElement.ownerDocument.getElementById(styleID) === null) {
         const style: HTMLStyleElement = this.renderer.createElement('style');
@@ -31,7 +41,7 @@ export class RippleDirective {
               position: relative;
             }
             .x-ink {
-              background: var(--x-ripple-color, rgba(0, 0, 0, 0.1));
+              background: var(--x-ripple-color, rgba(0,0,0,0.1));
               border-radius: 50%;
               pointer-events: none;
               position: absolute;
@@ -52,11 +62,14 @@ export class RippleDirective {
         this.renderer.appendChild(this.elementRef.nativeElement.ownerDocument.head, style);
       }
 
-      const ink: HTMLElement = this.renderer.createElement('div');
+      const ink: HTMLElement = (this.ink = this.renderer.createElement('div'));
       {
         this.renderer.addClass(ink, 'x-ink');
         this.renderer.setAttribute(ink, 'aria-hidden', 'true');
         this.renderer.setAttribute(ink, 'role', 'presentation');
+        if (color !== undefined) {
+          this.renderer.setStyle(ink, 'background', color);
+        }
       }
 
       this.renderer.appendChild(this.elementRef.nativeElement, ink);
@@ -102,7 +115,20 @@ export class RippleDirective {
         removeMousedownListener();
         removeAnimationendListener();
         ink.remove();
+        this.ink = undefined;
       });
+    });
+
+    effect(() => {
+      const color = this.colorSignal();
+
+      if (this.ink !== undefined) {
+        if (color !== undefined) {
+          this.renderer.setStyle(this.ink, 'background', color);
+        } else {
+          this.renderer.removeStyle(this.ink, 'background');
+        }
+      }
     });
   }
 }
