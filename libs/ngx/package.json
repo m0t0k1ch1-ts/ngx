@@ -10,8 +10,8 @@
   "peerDependencies": {
     "@angular/common": "^22.0.0",
     "@angular/core": "^22.0.0",
-    "@ng-icons/core": "^33.2.3",
-    "@ng-icons/heroicons": "^33.2.3",
+    "@ng-icons/core": "^33.4.0",
+    "@ng-icons/heroicons": "^33.4.0",
     "tailwindcss": "^4.3.0"
   },
   "sideEffects": false
