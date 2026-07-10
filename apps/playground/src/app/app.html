@@ -1,54 +1,52 @@
 @let isOverlayVisible = this.isOverlayVisibleSignal();
 
-<div class="flex flex-col gap-8 p-8">
-  <div class="flex flex-col items-center">
-    <h1 class="font-medium">@m0t0k1ch1/ngx playground</h1>
-  </div>
-  <div class="flex flex-col items-center gap-4">
-    <div class="panel">
-      <h2>Form</h2>
-      <form [formRoot]="form">
-        <div class="flex flex-col items-center gap-4">
-          <div class="flex flex-col gap-1">
-            <input type="text" xInputText [formField]="form.name" placeholder="Name" />
-            @if (form.name().touched() && form.name().invalid()) {
-              <div class="flex flex-col pl-1">
-                @for (error of form.name().errors(); track $index) {
-                  <span class="text-sm text-red-500">{{ error.message }}</span>
-                }
-              </div>
-            }
+<div class="flex h-dvh scrollbar-gutter-both justify-center overflow-y-auto">
+  <div class="flex w-full max-w-4xl flex-col gap-8 p-8">
+    <h1 class="text-center font-medium">@m0t0k1ch1/ngx playground</h1>
+    <div class="flex flex-col gap-4">
+      <div class="panel">
+        <h2>Form</h2>
+        <form [formRoot]="form">
+          <div class="flex flex-col items-center gap-4">
+            <div class="flex flex-col gap-1">
+              <input type="text" xInputText [formField]="form.name" placeholder="Name" />
+              @if (form.name().touched() && form.name().invalid()) {
+                <div class="flex flex-col pl-1">
+                  @for (error of form.name().errors(); track $index) {
+                    <span class="text-sm text-red-500">{{ error.message }}</span>
+                  }
+                </div>
+              }
+            </div>
+            <button type="submit" xRipple class="default">Submit</button>
           </div>
-          <button type="submit" xRipple class="default">Submit</button>
+        </form>
+      </div>
+      <div class="panel">
+        <h2>Loader</h2>
+        <div class="flex justify-center">
+          <x-loader />
         </div>
-      </form>
-    </div>
-    <div class="panel">
-      <h2>Loader</h2>
-      <div class="flex flex-col items-center">
-        <x-loader />
+      </div>
+      <div class="panel">
+        <h2>Overlay</h2>
+        <div class="flex justify-center">
+          <button xRipple class="default" (click)="onClickShowOverlayButton()">Show</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Toast</h2>
+        <div class="flex flex-col items-center gap-2">
+          <button xRipple class="default w-32" (click)="onClickAddSuccessToastButton()">
+            Add SUCCESS
+          </button>
+          <button xRipple class="default w-32" (click)="onClickAddErrorToastButton()">
+            Add ERROR
+          </button>
+        </div>
       </div>
     </div>
-    <div class="panel">
-      <h2>Overlay</h2>
-      <div class="flex flex-col items-center">
-        <button xRipple class="default" (click)="onClickShowOverlayButton()">Show</button>
-      </div>
-    </div>
-    <div class="panel">
-      <h2>Toast</h2>
-      <div class="flex flex-col items-center gap-2">
-        <button xRipple class="default w-32" (click)="onClickAddSuccessToastButton()">
-          Add SUCCESS
-        </button>
-        <button xRipple class="default w-32" (click)="onClickAddErrorToastButton()">
-          Add ERROR
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="flex flex-col items-center">
-    <span class="max-w-5xl text-center text-gray-300">{{ userAgent }}</span>
+    <span class="text-center text-gray-300">{{ userAgent }}</span>
   </div>
 </div>
 
@@ -56,8 +54,8 @@
   <button xRipple class="default" (click)="onClickHideOverlayButton()">Hide</button>
 </x-overlay>
 
-<div class="fixed bottom-0 z-50 flex w-dvw flex-col items-center">
-  <div class="w-full max-w-5xl">
+<div class="fixed bottom-0 z-50 flex w-dvw justify-center">
+  <div class="w-full max-w-4xl">
     <x-toast-container />
   </div>
 </div>
