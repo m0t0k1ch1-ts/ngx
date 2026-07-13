@@ -64,7 +64,6 @@ export class RippleDirective {
       {
         this.renderer.addClass(ink, 'x-ink');
         this.renderer.setAttribute(ink, 'aria-hidden', 'true');
-        this.renderer.setAttribute(ink, 'role', 'presentation');
       }
 
       this.renderer.appendChild(this.elementRef.nativeElement, ink);
