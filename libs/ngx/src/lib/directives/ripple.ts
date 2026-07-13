@@ -28,8 +28,6 @@ export class RippleDirective {
 
   constructor() {
     afterNextRender(() => {
-      const color = this.colorSignal();
-
       const styleID = 'x-ripple-style';
       if (this.elementRef.nativeElement.ownerDocument.getElementById(styleID) === null) {
         const style: HTMLStyleElement = this.renderer.createElement('style');
@@ -67,12 +65,11 @@ export class RippleDirective {
         this.renderer.addClass(ink, 'x-ink');
         this.renderer.setAttribute(ink, 'aria-hidden', 'true');
         this.renderer.setAttribute(ink, 'role', 'presentation');
-        if (color !== undefined) {
-          this.renderer.setStyle(ink, 'background', color);
-        }
       }
 
       this.renderer.appendChild(this.elementRef.nativeElement, ink);
+
+      this.sync();
 
       // Fallback for animationend, which does not fire when the element is removed from the DOM.
       // e.g. via content projection inside @if.
@@ -119,16 +116,21 @@ export class RippleDirective {
       });
     });
 
-    effect(() => {
-      const color = this.colorSignal();
+    effect(() => this.sync());
+  }
 
-      if (this.ink !== undefined) {
-        if (color !== undefined) {
-          this.renderer.setStyle(this.ink, 'background', color);
-        } else {
-          this.renderer.removeStyle(this.ink, 'background');
-        }
-      }
-    });
+  private sync(): void {
+    const color = this.colorSignal();
+
+    const ink = this.ink;
+    if (ink === undefined) {
+      return;
+    }
+
+    if (color !== undefined) {
+      this.renderer.setStyle(ink, 'background', color);
+    } else {
+      this.renderer.removeStyle(ink, 'background');
+    }
   }
 }
