@@ -30,6 +30,9 @@ export class BadgeDirective {
   public readonly fontSizeSignal = input<string | undefined>(undefined, {
     alias: 'xBadgeFontSize',
   });
+  public readonly fontWeightSignal = input<string | undefined>(undefined, {
+    alias: 'xBadgeFontWeight',
+  });
   public readonly paddingSignal = input<string | undefined>(undefined, {
     alias: 'xBadgePadding',
   });
@@ -76,6 +79,7 @@ export class BadgeDirective {
     const borderWidth = this.borderWidthSignal();
     const color = this.colorSignal();
     const fontSize = this.fontSizeSignal();
+    const fontWeight = this.fontWeightSignal();
     const padding = this.paddingSignal();
     const size = this.sizeSignal();
     const textColor = this.textColorSignal();
@@ -121,6 +125,7 @@ export class BadgeDirective {
     );
     this.renderer.setStyle(badge, 'color', textColor ?? 'var(--x-badge-text-color, #fff)');
     this.renderer.setStyle(badge, 'font-size', fontSize ?? 'var(--x-badge-font-size, 0.5rem)');
+    this.renderer.setStyle(badge, 'font-weight', fontWeight ?? 'var(--x-badge-font-weight, 400)');
     this.renderer.setStyle(badge, 'height', size ?? `var(--x-badge-size, ${defaultSize})`);
     this.renderer.setStyle(badge, 'min-width', size ?? `var(--x-badge-size, ${defaultSize})`);
     this.renderer.setStyle(
