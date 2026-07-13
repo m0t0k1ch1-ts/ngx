@@ -1,9 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormField, FormRoot, form, validateStandardSchema } from '@angular/forms/signals';
 
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { heroBell } from '@ng-icons/heroicons/outline';
 import { z } from 'zod';
 
 import {
+  BadgeDirective,
   InputTextDirective,
   LoaderComponent,
   OverlayComponent,
@@ -25,6 +28,8 @@ type FormInput = z.infer<typeof formSchema>;
   imports: [
     FormField,
     FormRoot,
+    NgIcon,
+    BadgeDirective,
     InputTextDirective,
     LoaderComponent,
     OverlayComponent,
@@ -33,6 +38,7 @@ type FormInput = z.infer<typeof formSchema>;
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
+  viewProviders: [provideIcons({ heroBell })],
 })
 export class App {
   private readonly toastService = inject(ToastService);
