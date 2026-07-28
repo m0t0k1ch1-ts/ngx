@@ -13,7 +13,7 @@ import { ToastComponent } from '../toast/toast';
 export class ToastContainerComponent {
   private readonly toastService = inject(ToastService);
 
-  public readonly idSignal = input<number | string | undefined>(undefined, {
+  public readonly idSignal = input<number | string | null>(null, {
     alias: 'id',
   });
 
@@ -22,7 +22,7 @@ export class ToastContainerComponent {
     const toasts = this.toastService.toastsSignal();
 
     return toasts.filter((toast) => {
-      return id === undefined || toast.containerID === id;
+      return id === null || toast.containerID === id;
     });
   });
 }
