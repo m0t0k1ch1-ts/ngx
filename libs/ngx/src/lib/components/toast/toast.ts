@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -22,27 +22,6 @@ export class ToastComponent {
 
   public readonly toastSignal = input.required<Toast>({
     alias: 'toast',
-  });
-
-  public readonly iconNameSignal = computed(() => {
-    switch (this.toastSignal().type) {
-      case 'SUCCESS':
-        return 'heroCheckCircleSolid';
-      case 'ERROR':
-        return 'heroExclamationCircleSolid';
-      default:
-        return null;
-    }
-  });
-  public readonly iconColorSignal = computed(() => {
-    switch (this.toastSignal().type) {
-      case 'SUCCESS':
-        return 'oklch(72.3% 0.219 149.579)'; // green-500
-      case 'ERROR':
-        return 'oklch(63.7% 0.237 25.331)'; // red-500
-      default:
-        return null;
-    }
   });
 
   public onClickCloseButton(): void {

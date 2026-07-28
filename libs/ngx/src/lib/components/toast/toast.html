@@ -1,17 +1,23 @@
 @let toast = toastSignal();
 
-@let iconName = iconNameSignal();
-@let iconColor = iconColorSignal();
+@let iconSize = '20px';
 
 <div
   class="flex flex-row gap-2 rounded-lg border bg-white/95 p-4 drop-shadow-xs"
   [class.border-green-100]="toast.type === 'SUCCESS'"
   [class.border-red-100]="toast.type === 'ERROR'"
 >
-  @if (iconName !== null && iconColor !== null) {
-    <div>
-      <ng-icon [name]="iconName" size="20px" [color]="iconColor" />
-    </div>
+  @switch (toast.type) {
+    @case ('SUCCESS') {
+      <div class="text-gray-500">
+        <ng-icon name="heroCheckCircleSolid" [size]="iconSize" />
+      </div>
+    }
+    @case ('ERROR') {
+      <div class="text-red-500">
+        <ng-icon name="heroExclamationCircleSolid" [size]="iconSize" />
+      </div>
+    }
   }
   <div class="flex min-w-0 grow flex-col gap-2 text-sm">
     <span
@@ -23,12 +29,10 @@
     </span>
     <span class="wrap-break-word">{{ toast.message }}</span>
   </div>
-  <div>
-    <!-- color: gray-300 -->
+  <div class="text-gray-300">
     <ng-icon
       name="heroXMarkSolid"
-      size="20px"
-      color="oklch(87.2% 0.01 258.338)"
+      [size]="iconSize"
       class="cursor-pointer"
       (click)="onClickCloseButton()"
     />
