@@ -7,10 +7,3 @@ div.panel {
     @apply text-center font-medium;
   }
 }
-
-button.default {
-  @apply h-8 cursor-pointer touch-manipulation rounded-lg border-b-2 px-3 text-sm font-medium transition select-none;
-  @apply active:translate-y-px active:scale-[0.99] active:border-b;
-  @apply border-b-gray-600 bg-gray-500 text-white;
-  --x-ripple-color: rgba(255, 255, 255, 0.3);
-}

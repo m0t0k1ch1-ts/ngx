@@ -29,7 +29,7 @@
         <div class="panel">
           <h2>Overlay</h2>
           <div class="flex justify-center">
-            <button xRipple class="default" (click)="onClickShowOverlayButton()">Show</button>
+            <button xRipple class="gray" (click)="onClickShowOverlayButton()">Show</button>
           </div>
         </div>
         <div class="panel">
@@ -66,7 +66,7 @@
                 </div>
               </div>
               <div class="flex justify-center">
-                <button type="submit" xRipple class="default">Submit</button>
+                <button type="submit" xRipple class="gray">Submit</button>
               </div>
             </div>
           </form>
@@ -74,10 +74,10 @@
         <div class="panel">
           <h2>Toast</h2>
           <div class="flex flex-col items-center gap-2">
-            <button xRipple class="default w-32" (click)="onClickAddSuccessToastButton()">
+            <button xRipple class="green w-32" (click)="onClickAddSuccessToastButton()">
               Add SUCCESS
             </button>
-            <button xRipple class="default w-32" (click)="onClickAddErrorToastButton()">
+            <button xRipple class="red w-32" (click)="onClickAddErrorToastButton()">
               Add ERROR
             </button>
           </div>
@@ -89,7 +89,7 @@
 </div>
 
 <x-overlay [isVisible]="isOverlayVisible">
-  <button xRipple class="default" (click)="onClickHideOverlayButton()">Hide</button>
+  <button xRipple class="gray" (click)="onClickHideOverlayButton()">Hide</button>
 </x-overlay>
 
 <div class="fixed top-0 z-40 flex w-dvw justify-center">
