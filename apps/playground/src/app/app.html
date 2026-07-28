@@ -21,6 +21,18 @@
           </div>
         </div>
         <div class="panel">
+          <h2>Loader</h2>
+          <div class="flex justify-center">
+            <x-loader />
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Overlay</h2>
+          <div class="flex justify-center">
+            <button xRipple class="default" (click)="onClickShowOverlayButton()">Show</button>
+          </div>
+        </div>
+        <div class="panel">
           <h2>TextInput</h2>
           <form [formRoot]="form">
             <div class="flex flex-col gap-4">
@@ -58,18 +70,6 @@
               </div>
             </div>
           </form>
-        </div>
-        <div class="panel">
-          <h2>Loader</h2>
-          <div class="flex justify-center">
-            <x-loader />
-          </div>
-        </div>
-        <div class="panel">
-          <h2>Overlay</h2>
-          <div class="flex justify-center">
-            <button xRipple class="default" (click)="onClickShowOverlayButton()">Show</button>
-          </div>
         </div>
         <div class="panel">
           <h2>Toast</h2>
