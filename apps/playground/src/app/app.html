@@ -21,20 +21,41 @@
           </div>
         </div>
         <div class="panel">
-          <h2>InputText</h2>
+          <h2>TextInput</h2>
           <form [formRoot]="form">
-            <div class="flex flex-col items-center gap-4">
-              <div class="flex flex-col gap-1">
-                <input type="text" xInputText [formField]="form.name" placeholder="Name" />
-                @if (form.name().touched() && form.name().invalid()) {
-                  <div class="flex flex-col pl-1">
-                    @for (error of form.name().errors(); track $index) {
-                      <span class="text-sm text-red-500">{{ error.message }}</span>
-                    }
-                  </div>
-                }
+            <div class="flex flex-col gap-4">
+              <div class="flex justify-center">
+                <div class="flex w-full max-w-64 flex-col gap-1">
+                  <input type="text" xTextInput [formField]="form.name" placeholder="Name *" />
+                  @if (form.name().touched() && form.name().invalid()) {
+                    <div class="flex flex-col pl-1">
+                      @for (error of form.name().errors(); track $index) {
+                        <span class="text-sm text-red-500">{{ error.message }}</span>
+                      }
+                    </div>
+                  }
+                </div>
               </div>
-              <button type="submit" xRipple class="default">Submit</button>
+              <div class="flex justify-center">
+                <div class="flex w-full max-w-64 flex-col gap-1">
+                  <textarea
+                    xTextInput
+                    [formField]="form.profile"
+                    placeholder="Profile *"
+                    class="h-32 resize-none"
+                  ></textarea>
+                  @if (form.profile().touched() && form.profile().invalid()) {
+                    <div class="flex flex-col pl-1">
+                      @for (error of form.profile().errors(); track $index) {
+                        <span class="text-sm text-red-500">{{ error.message }}</span>
+                      }
+                    </div>
+                  }
+                </div>
+              </div>
+              <div class="flex justify-center">
+                <button type="submit" xRipple class="default">Submit</button>
+              </div>
             </div>
           </form>
         </div>

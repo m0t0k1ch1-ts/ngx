@@ -7,16 +7,19 @@ import { z } from 'zod';
 
 import {
   BadgeDirective,
-  InputTextDirective,
+  RippleDirective,
+  TextInputDirective,
   LoaderComponent,
   OverlayComponent,
-  RippleDirective,
   ToastContainerComponent,
   ToastService,
 } from 'ngx';
 
 const formSchema = z.object({
   name: z.string().nonempty({
+    error: 'Required',
+  }),
+  profile: z.string().nonempty({
     error: 'Required',
   }),
 });
@@ -30,10 +33,10 @@ type FormInput = z.infer<typeof formSchema>;
     FormRoot,
     NgIcon,
     BadgeDirective,
-    InputTextDirective,
+    RippleDirective,
+    TextInputDirective,
     LoaderComponent,
     OverlayComponent,
-    RippleDirective,
     ToastContainerComponent,
   ],
   templateUrl: './app.html',
@@ -47,6 +50,7 @@ export class App {
 
   private readonly formModel = signal<FormInput>({
     name: '',
+    profile: '',
   });
 
   public readonly form = form(
