@@ -46,6 +46,9 @@ type FormInput = z.infer<typeof formSchema>;
 export class App {
   private readonly toastService = inject(ToastService);
 
+  public readonly topToastContainerID = 'top';
+  public readonly bottomToastContainerID = 'bottom';
+
   public readonly userAgent = navigator.userAgent;
 
   private readonly formModel = signal<FormInput>({
@@ -84,6 +87,7 @@ export class App {
 
   public onClickAddSuccessToastButton(): void {
     this.toastService.add({
+      containerID: this.topToastContainerID,
       type: 'SUCCESS',
       title: 'SUCCESS',
       message: 'something succeeded',
@@ -93,6 +97,7 @@ export class App {
 
   public onClickAddErrorToastButton(): void {
     this.toastService.add({
+      containerID: this.bottomToastContainerID,
       type: 'ERROR',
       title: 'ERROR',
       message: 'something went wrong',

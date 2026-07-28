@@ -92,8 +92,14 @@
   <button xRipple class="default" (click)="onClickHideOverlayButton()">Hide</button>
 </x-overlay>
 
+<div class="fixed top-0 z-40 flex w-dvw justify-center">
+  <div class="w-full max-w-4xl">
+    <x-toast-container [id]="topToastContainerID" />
+  </div>
+</div>
+
 <div class="fixed bottom-0 z-50 flex w-dvw justify-center">
   <div class="w-full max-w-4xl">
-    <x-toast-container />
+    <x-toast-container [id]="bottomToastContainerID" />
   </div>
 </div>
