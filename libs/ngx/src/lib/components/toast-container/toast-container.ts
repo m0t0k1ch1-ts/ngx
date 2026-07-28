@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 
 import { ToastService } from '../../services';
 
@@ -13,5 +13,16 @@ import { ToastComponent } from '../toast/toast';
 export class ToastContainerComponent {
   private readonly toastService = inject(ToastService);
 
-  public readonly toastsSignal = this.toastService.toastsSignal;
+  public readonly idSignal = input<number | string | undefined>(undefined, {
+    alias: 'id',
+  });
+
+  public readonly toastsSignal = computed(() => {
+    const id = this.idSignal();
+    const toasts = this.toastService.toastsSignal();
+
+    return toasts.filter((toast) => {
+      return id === undefined || toast.containerID === id;
+    });
+  });
 }
