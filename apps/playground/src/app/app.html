@@ -86,7 +86,7 @@
   </div>
 </div>
 
-<x-overlay [isVisible]="isOverlayVisible" (click)="onOverlayClicked()">
+<x-overlay [isVisible]="isOverlayVisible" [zIndex]="30" (click)="onOverlayClicked()">
   <div class="flex flex-col">
     @for (text of ['Tap anywhere', 'to hide overlay']; track $index) {
       <span class="text-center text-white">{{ text }}</span>
