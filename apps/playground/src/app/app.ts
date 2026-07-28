@@ -78,15 +78,15 @@ export class App {
 
   public readonly isOverlayVisibleSignal = signal<boolean>(false);
 
-  public onClickShowOverlayButton(): void {
+  public onShowOverlayButtonClicked(): void {
     this.isOverlayVisibleSignal.set(true);
   }
 
-  public onClickHideOverlayButton(): void {
+  public onOverlayClicked(): void {
     this.isOverlayVisibleSignal.set(false);
   }
 
-  public onClickAddSuccessToastButton(): void {
+  public onAddSuccessToastButtonClicked(): void {
     this.toastService.add({
       containerID: this.topToastContainerID,
       type: 'SUCCESS',
@@ -96,7 +96,7 @@ export class App {
     });
   }
 
-  public onClickAddErrorToastButton(): void {
+  public onAddErrorToastButtonClicked(): void {
     this.toastService.add({
       containerID: this.bottomToastContainerID,
       type: 'ERROR',

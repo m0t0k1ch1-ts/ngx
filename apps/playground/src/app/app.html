@@ -29,7 +29,7 @@
         <div class="panel">
           <h2>Overlay</h2>
           <div class="flex justify-center">
-            <button xRipple class="gray" (click)="onClickShowOverlayButton()">Show</button>
+            <button xRipple class="gray" (click)="onShowOverlayButtonClicked()">Show</button>
           </div>
         </div>
         <div class="panel">
@@ -37,7 +37,7 @@
           <form [formRoot]="form">
             <div class="flex flex-col gap-4">
               <div class="flex justify-center">
-                <div class="flex w-full max-w-64 flex-col gap-1">
+                <div class="flex w-64 flex-col gap-1">
                   <input type="text" xTextInput [formField]="form.name" placeholder="Name *" />
                   @if (form.name().touched() && form.name().invalid()) {
                     <div class="flex flex-col pl-1">
@@ -49,7 +49,7 @@
                 </div>
               </div>
               <div class="flex justify-center">
-                <div class="flex w-full max-w-64 flex-col gap-1">
+                <div class="flex w-64 flex-col gap-1">
                   <textarea
                     xTextInput
                     [formField]="form.profile"
@@ -74,12 +74,10 @@
         <div class="panel">
           <h2>Toast</h2>
           <div class="flex flex-col items-center gap-2">
-            <button xRipple class="green w-32" (click)="onClickAddSuccessToastButton()">
+            <button xRipple class="green" (click)="onAddSuccessToastButtonClicked()">
               Add SUCCESS
             </button>
-            <button xRipple class="red w-32" (click)="onClickAddErrorToastButton()">
-              Add ERROR
-            </button>
+            <button xRipple class="red" (click)="onAddErrorToastButtonClicked()">Add ERROR</button>
           </div>
         </div>
       </div>
@@ -88,8 +86,12 @@
   </div>
 </div>
 
-<x-overlay [isVisible]="isOverlayVisible">
-  <button xRipple class="gray" (click)="onClickHideOverlayButton()">Hide</button>
+<x-overlay [isVisible]="isOverlayVisible" (click)="onOverlayClicked()">
+  <div class="flex flex-col">
+    @for (text of ['Tap anywhere', 'to hide overlay']; track $index) {
+      <span class="text-center text-white">{{ text }}</span>
+    }
+  </div>
 </x-overlay>
 
 <div class="fixed top-0 z-40 flex w-dvw justify-center">

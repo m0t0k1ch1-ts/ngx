@@ -9,7 +9,7 @@
 button.gray,
 button.green,
 button.red {
-  @apply h-8 cursor-pointer touch-manipulation rounded-lg border-b-2 px-3 text-sm font-medium transition select-none;
+  @apply h-8 w-40 cursor-pointer touch-manipulation rounded-lg border-b-2 text-sm font-medium transition select-none;
   @apply active:translate-y-px active:scale-[0.99] active:border-b;
 }
 
