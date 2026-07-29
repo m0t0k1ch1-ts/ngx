@@ -8,11 +8,11 @@ import { FormCheckboxControl } from '@angular/forms/signals';
   styleUrl: './toggle-switch.css',
   host: {
     '[style]': `{
-      '--resolved-checked-background-color': resolvedCheckedBackgroundColorSignal(),
-      '--resolved-color': resolvedColorSignal(),
-      '--resolved-padding': resolvedPaddingSignal(),
-      '--resolved-size': resolvedSizeSignal(),
-      '--resolved-unchecked-background-color': resolvedUncheckedBackgroundColorSignal(),
+      '--x-toggle-switch-resolved-checked-background-color': resolvedCheckedBackgroundColorSignal(),
+      '--x-toggle-switch-resolved-color': resolvedColorSignal(),
+      '--x-toggle-switch-resolved-padding': resolvedPaddingSignal(),
+      '--x-toggle-switch-resolved-size': resolvedSizeSignal(),
+      '--x-toggle-switch-resolved-unchecked-background-color': resolvedUncheckedBackgroundColorSignal(),
     }`,
   },
 })
