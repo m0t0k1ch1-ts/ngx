@@ -3,9 +3,12 @@ import { Directive, computed, input } from '@angular/core';
 @Directive({
   selector: '[xTextInput]',
   host: {
-    class: 'block rounded-lg border px-3 py-2 transition-colors outline-none focus:ring-1',
-    '[class]':
-      "touchedAndInvalidSignal() ? ['border-red-400', 'focus:ring-red-400'] : ['border-gray-300', 'focus:border-blue-400', 'focus:ring-blue-400']",
+    class:
+      'block rounded-lg border border-(--current-border-color) px-3 py-2 transition-colors outline-none focus:border-(--current-focused-border-color) focus:ring-1 focus:ring-(--current-focused-border-color)',
+    '[style]': `{
+      '--current-border-color': currentBorderColorSignal(),
+      '--current-focused-border-color': currentFocusedBorderColorSignal(),
+    }`,
   },
 })
 export class TextInputDirective {
@@ -16,7 +19,48 @@ export class TextInputDirective {
     alias: 'touched',
   });
 
+  public readonly defaultBorderColorSignal = input<string | undefined>(undefined, {
+    alias: 'xTextInputDefaultBorderColor',
+  });
+  public readonly errorBorderColorSignal = input<string | undefined>(undefined, {
+    alias: 'xTextInputErrorBorderColor',
+  });
+  public readonly focusedBorderColorSignal = input<string | undefined>(undefined, {
+    alias: 'xTextInputFocusedBorderColor',
+  });
+
   public readonly touchedAndInvalidSignal = computed(
     () => this.touchedSignal() && this.invalidSignal(),
   );
+
+  private readonly resolvedDefaultBorderColorSignal = computed(() => {
+    return (
+      this.defaultBorderColorSignal() ??
+      'var(--x-text-input-default-border-color, var(--color-gray-300))'
+    );
+  });
+  private readonly resolvedErrorBorderColorSignal = computed(() => {
+    return (
+      this.errorBorderColorSignal() ??
+      'var(--x-text-input-error-border-color, var(--color-red-400))'
+    );
+  });
+  private readonly resolvedFocusedBorderColorSignal = computed(() => {
+    return (
+      this.focusedBorderColorSignal() ??
+      'var(--x-text-input-focused-border-color, var(--color-blue-400))'
+    );
+  });
+
+  public readonly currentBorderColorSignal = computed(() => {
+    return this.touchedAndInvalidSignal()
+      ? this.resolvedErrorBorderColorSignal()
+      : this.resolvedDefaultBorderColorSignal();
+  });
+
+  public readonly currentFocusedBorderColorSignal = computed(() => {
+    return this.touchedAndInvalidSignal()
+      ? this.resolvedErrorBorderColorSignal()
+      : this.resolvedFocusedBorderColorSignal();
+  });
 }
