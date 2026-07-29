@@ -4,7 +4,7 @@ import {
   ElementRef,
   Renderer2,
   afterNextRender,
-  effect,
+  computed,
   inject,
   input,
 } from '@angular/core';
@@ -13,6 +13,9 @@ import {
   selector: '[xRipple]',
   host: {
     class: 'x-ripple',
+    '[style]': `{
+      '--x-ripple-resolved-color': resolvedColorSignal(),
+    }`,
   },
 })
 export class RippleDirective {
@@ -24,7 +27,9 @@ export class RippleDirective {
     alias: 'xRippleColor',
   });
 
-  private ink: HTMLElement | undefined;
+  public readonly resolvedColorSignal = computed(() => {
+    return this.colorSignal() ?? 'var(--x-ripple-color, rgba(0,0,0,0.1))';
+  });
 
   constructor() {
     afterNextRender(() => {
@@ -39,7 +44,7 @@ export class RippleDirective {
               position: relative;
             }
             .x-ink {
-              background: var(--x-ripple-color, rgba(0,0,0,0.1));
+              background: var(--x-ripple-resolved-color);
               border-radius: 50%;
               pointer-events: none;
               position: absolute;
@@ -60,15 +65,13 @@ export class RippleDirective {
         this.renderer.appendChild(this.elementRef.nativeElement.ownerDocument.head, style);
       }
 
-      const ink: HTMLElement = (this.ink = this.renderer.createElement('div'));
+      const ink: HTMLElement = this.renderer.createElement('div');
       {
         this.renderer.addClass(ink, 'x-ink');
         this.renderer.setAttribute(ink, 'aria-hidden', 'true');
       }
 
       this.renderer.appendChild(this.elementRef.nativeElement, ink);
-
-      this.sync();
 
       // Fallback for animationend, which does not fire when the element is removed from the DOM.
       // e.g. via content projection inside @if.
@@ -111,25 +114,7 @@ export class RippleDirective {
         removeMousedownListener();
         removeAnimationendListener();
         ink.remove();
-        this.ink = undefined;
       });
     });
-
-    effect(() => this.sync());
-  }
-
-  private sync(): void {
-    const color = this.colorSignal();
-
-    const ink = this.ink;
-    if (ink === undefined) {
-      return;
-    }
-
-    if (color !== undefined) {
-      this.renderer.setStyle(ink, 'background', color);
-    } else {
-      this.renderer.removeStyle(ink, 'background');
-    }
   }
 }
