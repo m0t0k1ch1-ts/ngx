@@ -12,6 +12,7 @@ import {
   LoaderComponent,
   OverlayComponent,
   ToastContainerComponent,
+  ToggleSwitchComponent,
   ToastService,
 } from 'ngx';
 
@@ -38,6 +39,7 @@ type FormInput = z.infer<typeof formSchema>;
     LoaderComponent,
     OverlayComponent,
     ToastContainerComponent,
+    ToggleSwitchComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
