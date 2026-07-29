@@ -1,0 +1,19 @@
+@let isChecked = checked();
+
+<button
+  type="button"
+  role="switch"
+  [attr.aria-checked]="isChecked"
+  class="relative h-[calc(var(--resolved-switch-size)+2*var(--resolved-padding))] w-[calc(2*(var(--resolved-switch-size)+var(--resolved-padding)))] cursor-pointer rounded-full transition-colors"
+  [class]="
+    isChecked
+      ? 'bg-(--resolved-checked-background-color)'
+      : 'bg-(--resolved-unchecked-background-color)'
+  "
+  (click)="onClicked()"
+>
+  <div
+    class="absolute top-(--resolved-padding) left-(--resolved-padding) size-(--resolved-switch-size) rounded-full bg-(--resolved-switch-color) transition-transform"
+    [class]="isChecked ? 'translate-x-(--resolved-switch-size)' : ''"
+  ></div>
+</button>
