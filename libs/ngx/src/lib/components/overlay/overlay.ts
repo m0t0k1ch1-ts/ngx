@@ -7,7 +7,7 @@ import { Component, computed, input } from '@angular/core';
   styleUrl: './overlay.css',
   host: {
     '[style]': `{
-      '--resolved-z-index': resolvedZIndexSignal(),
+      '--x-overlay-resolved-z-index': resolvedZIndexSignal(),
     }`,
   },
 })
