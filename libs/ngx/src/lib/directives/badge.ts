@@ -111,21 +111,29 @@ export class BadgeDirective {
     this.renderer.setStyle(
       badge,
       'background-color',
-      color ?? 'var(--x-badge-color, oklch(63.7% 0.237 25.331))',
+      color ?? 'var(--x-badge-color, var(--color-red-500))',
     );
     this.renderer.setStyle(
       badge,
       'border-color',
-      borderColor ?? 'var(--x-badge-border-color, #fff)',
+      borderColor ?? 'var(--x-badge-border-color, var(--color-white))',
     );
     this.renderer.setStyle(
       badge,
       'border-width',
       borderWidth ?? 'var(--x-badge-border-width, 1px)',
     );
-    this.renderer.setStyle(badge, 'color', textColor ?? 'var(--x-badge-text-color, #fff)');
+    this.renderer.setStyle(
+      badge,
+      'color',
+      textColor ?? 'var(--x-badge-text-color, var(--color-white))',
+    );
     this.renderer.setStyle(badge, 'font-size', fontSize ?? 'var(--x-badge-font-size, 0.5rem)');
-    this.renderer.setStyle(badge, 'font-weight', fontWeight ?? 'var(--x-badge-font-weight, 400)');
+    this.renderer.setStyle(
+      badge,
+      'font-weight',
+      fontWeight ?? 'var(--x-badge-font-weight, var(--font-weight-normal))',
+    );
     this.renderer.setStyle(badge, 'height', size ?? `var(--x-badge-size, ${defaultSize})`);
     this.renderer.setStyle(badge, 'min-width', size ?? `var(--x-badge-size, ${defaultSize})`);
     this.renderer.setStyle(
