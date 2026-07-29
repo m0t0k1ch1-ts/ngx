@@ -1,5 +1,4 @@
 @import '@fontsource-variable/outfit';
-
 @import 'tailwindcss';
 
 @theme {
@@ -9,8 +8,8 @@
 button.gray,
 button.green,
 button.red {
-  @apply h-8 w-40 cursor-pointer touch-manipulation rounded-lg border-b-2 text-sm font-medium transition select-none;
-  @apply active:translate-y-px active:scale-[0.99] active:border-b;
+  @apply h-8 w-40 cursor-pointer touch-manipulation rounded-md text-sm transition select-none;
+  @apply active:scale-[0.95];
 }
 
 button.gray {
