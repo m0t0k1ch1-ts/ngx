@@ -4,16 +4,16 @@
   type="button"
   role="switch"
   [attr.aria-checked]="isChecked"
-  class="relative h-[calc(var(--resolved-size)+2*var(--resolved-padding))] w-[calc(2*(var(--resolved-size)+var(--resolved-padding)))] cursor-pointer rounded-full transition-colors"
+  class="relative h-[calc(var(--x-toggle-switch-resolved-size)+2*var(--x-toggle-switch-resolved-padding))] w-[calc(2*(var(--x-toggle-switch-resolved-size)+var(--x-toggle-switch-resolved-padding)))] cursor-pointer rounded-full transition-colors"
   [class]="
     isChecked
-      ? 'bg-(--resolved-checked-background-color)'
-      : 'bg-(--resolved-unchecked-background-color)'
+      ? 'bg-(--x-toggle-switch-resolved-checked-background-color)'
+      : 'bg-(--x-toggle-switch-resolved-unchecked-background-color)'
   "
   (click)="onClicked()"
 >
   <div
-    class="absolute top-(--resolved-padding) left-(--resolved-padding) size-(--resolved-size) rounded-full bg-(--resolved-color) transition-transform"
-    [class]="isChecked ? 'translate-x-(--resolved-size)' : ''"
+    class="absolute top-(--x-toggle-switch-resolved-padding) left-(--x-toggle-switch-resolved-padding) size-(--x-toggle-switch-resolved-size) rounded-full bg-(--x-toggle-switch-resolved-color) transition-transform"
+    [class]="isChecked ? 'translate-x-(--x-toggle-switch-resolved-size)' : ''"
   ></div>
 </button>
