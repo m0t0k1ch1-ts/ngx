@@ -7,11 +7,13 @@ import { FormCheckboxControl } from '@angular/forms/signals';
   templateUrl: './toggle-switch.html',
   styleUrl: './toggle-switch.css',
   host: {
-    '[style.--resolved-checked-background-color]': 'resolvedCheckedBackgroundColorSignal()',
-    '[style.--resolved-color]': 'resolvedColorSignal()',
-    '[style.--resolved-padding]': 'resolvedPaddingSignal()',
-    '[style.--resolved-size]': 'resolvedSizeSignal()',
-    '[style.--resolved-unchecked-background-color]': 'resolvedUncheckedBackgroundColorSignal()',
+    '[style]': `{
+      '--resolved-checked-background-color': resolvedCheckedBackgroundColorSignal(),
+      '--resolved-color': resolvedColorSignal(),
+      '--resolved-padding': resolvedPaddingSignal(),
+      '--resolved-size': resolvedSizeSignal(),
+      '--resolved-unchecked-background-color': resolvedUncheckedBackgroundColorSignal(),
+    }`,
   },
 })
 export class ToggleSwitchComponent implements FormCheckboxControl {
