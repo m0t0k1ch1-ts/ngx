@@ -6,22 +6,22 @@ circle {
 
 @keyframes color-cycle {
   0% {
-    stroke: oklch(62.3% 0.214 259.815); /* blue-500 */
+    stroke: var(--color-blue-500);
   }
   20% {
-    stroke: oklch(71.5% 0.143 215.221); /* cyan-500 */
+    stroke: var(--color-cyan-500);
   }
   40% {
-    stroke: oklch(69.6% 0.17 162.48); /* emerald-500 */
+    stroke: var(--color-emerald-500);
   }
   60% {
-    stroke: oklch(76.9% 0.188 70.08); /* amber-500 */
+    stroke: var(--color-amber-500);
   }
   80% {
-    stroke: oklch(64.5% 0.246 16.439); /* rose-500 */
+    stroke: var(--color-rose-500);
   }
   100% {
-    stroke: oklch(62.3% 0.214 259.815); /* blue-500 */
+    stroke: var(--color-blue-500);
   }
 }
 
