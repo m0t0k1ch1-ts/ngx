@@ -3,6 +3,7 @@ import {
   ElementRef,
   Renderer2,
   afterNextRender,
+  computed,
   effect,
   inject,
   input,
@@ -12,6 +13,20 @@ import {
   selector: '[xBadge]',
   host: {
     class: 'relative',
+    '[style]': `{
+      '--x-badge-resolved-border-color': resolvedBorderColorSignal(),
+      '--x-badge-resolved-border-width': resolvedBorderWidthSignal(),
+      '--x-badge-resolved-color': resolvedColorSignal(),
+      '--x-badge-resolved-display': resolvedDisplaySignal(),
+      '--x-badge-resolved-font-size': resolvedFontSizeSignal(),
+      '--x-badge-resolved-font-weight': resolvedFontWeightSignal(),
+      '--x-badge-resolved-padding-x': resolvedPaddingXSignal(),
+      '--x-badge-resolved-padding-y': resolvedPaddingYSignal(),
+      '--x-badge-resolved-size': resolvedSizeSignal(),
+      '--x-badge-resolved-text-color': resolvedTextColorSignal(),
+      '--x-badge-resolved-translate-x': resolvedTranslateXSignal(),
+      '--x-badge-resolved-translate-y': resolvedTranslateYSignal(),
+    }`,
   },
 })
 export class BadgeDirective {
@@ -33,8 +48,11 @@ export class BadgeDirective {
   public readonly fontWeightSignal = input<string | undefined>(undefined, {
     alias: 'xBadgeFontWeight',
   });
-  public readonly paddingSignal = input<string | undefined>(undefined, {
-    alias: 'xBadgePadding',
+  public readonly paddingXSignal = input<string | undefined>(undefined, {
+    alias: 'xBadgePaddingX',
+  });
+  public readonly paddingYSignal = input<string | undefined>(undefined, {
+    alias: 'xBadgePaddingY',
   });
   public readonly sizeSignal = input<string | undefined>(undefined, {
     alias: 'xBadgeSize',
@@ -42,11 +60,62 @@ export class BadgeDirective {
   public readonly textColorSignal = input<string | undefined>(undefined, {
     alias: 'xBadgeTextColor',
   });
-  public readonly translateSignal = input<string | undefined>(undefined, {
-    alias: 'xBadgeTranslate',
+  public readonly translateXSignal = input<string | undefined>(undefined, {
+    alias: 'xBadgeTranslateX',
+  });
+  public readonly translateYSignal = input<string | undefined>(undefined, {
+    alias: 'xBadgeTranslateY',
   });
   public readonly valueSignal = input<number | string | undefined>(undefined, {
     alias: 'xBadgeValue',
+  });
+
+  public readonly resolvedBorderColorSignal = computed(() => {
+    return this.borderColorSignal() ?? 'var(--x-badge-border-color, var(--color-white))';
+  });
+  public readonly resolvedBorderWidthSignal = computed(() => {
+    return this.borderWidthSignal() ?? 'var(--x-badge-border-width, 1px)';
+  });
+  public readonly resolvedColorSignal = computed(() => {
+    return this.colorSignal() ?? 'var(--x-badge-color, var(--color-red-500))';
+  });
+  public readonly resolvedDisplaySignal = computed(() => {
+    return this.valueSignal() !== 0 ? 'flex' : 'none';
+  });
+  public readonly resolvedFontSizeSignal = computed(() => {
+    return this.fontSizeSignal() ?? 'var(--x-badge-font-size, 0.5rem)';
+  });
+  public readonly resolvedFontWeightSignal = computed(() => {
+    return this.fontWeightSignal() ?? 'var(--x-badge-font-weight, var(--font-weight-normal))';
+  });
+  public readonly resolvedPaddingXSignal = computed(() => {
+    return (
+      this.paddingXSignal() ??
+      `var(--x-badge-padding-x, ${this.resolvedValueSignal() !== undefined ? '0.25rem' : '0px'})`
+    );
+  });
+  public readonly resolvedPaddingYSignal = computed(() => {
+    return this.paddingYSignal() ?? 'var(--x-badge-padding-y, 0px)';
+  });
+  public readonly resolvedSizeSignal = computed(() => {
+    return (
+      this.sizeSignal() ??
+      `var(--x-badge-size, ${this.resolvedValueSignal() !== undefined ? '1rem' : '0.5rem'})`
+    );
+  });
+  public readonly resolvedTextColorSignal = computed(() => {
+    return this.textColorSignal() ?? 'var(--x-badge-text-color, var(--color-white))';
+  });
+  public readonly resolvedTranslateXSignal = computed(() => {
+    return this.translateXSignal() ?? 'var(--x-badge-translate-x, 50%)';
+  });
+  public readonly resolvedTranslateYSignal = computed(() => {
+    return this.translateYSignal() ?? 'var(--x-badge-translate-y, -50%)';
+  });
+  public readonly resolvedValueSignal = computed(() => {
+    const value = this.valueSignal();
+
+    return value !== undefined && value !== '' ? value.toString() : undefined;
   });
 
   private badge: HTMLElement | undefined;
@@ -55,92 +124,50 @@ export class BadgeDirective {
     afterNextRender(() => {
       const badge: HTMLElement = (this.badge = this.renderer.createElement('div'));
       {
-        this.renderer.setStyle(badge, 'align-items', 'center');
-        this.renderer.setStyle(badge, 'border-radius', 'calc(infinity * 1px)');
-        this.renderer.setStyle(badge, 'border-style', 'solid');
-        this.renderer.setStyle(badge, 'box-sizing', 'border-box');
-        this.renderer.setStyle(badge, 'justify-content', 'center');
-        this.renderer.setStyle(badge, 'line-height', '1');
-        this.renderer.setStyle(badge, 'position', 'absolute');
-        this.renderer.setStyle(badge, 'right', '0');
-        this.renderer.setStyle(badge, 'top', '0');
+        for (const className of [
+          'absolute',
+          'bg-(--x-badge-resolved-color)',
+          'border-(--x-badge-resolved-border-color)',
+          'border-(length:--x-badge-resolved-border-width)',
+          'box-border',
+          'font-(--x-badge-resolved-font-weight)',
+          'h-(--x-badge-resolved-size)',
+          'items-center',
+          'justify-center',
+          'leading-none',
+          'min-w-(--x-badge-resolved-size)',
+          'px-(--x-badge-resolved-padding-x)',
+          'py-(--x-badge-resolved-padding-y)',
+          'right-0',
+          'rounded-full',
+          'text-(--x-badge-resolved-text-color)',
+          'text-(length:--x-badge-resolved-font-size)',
+          'top-0',
+          'translate-x-(--x-badge-resolved-translate-x)',
+          'translate-y-(--x-badge-resolved-translate-y)',
+        ]) {
+          this.renderer.addClass(badge, className);
+        }
+        this.renderer.setStyle(badge, 'display', 'var(--x-badge-resolved-display)');
       }
 
       this.renderer.appendChild(this.elementRef.nativeElement, badge);
 
-      this.sync();
+      this.syncValue();
     });
 
-    effect(() => this.sync());
+    effect(() => this.syncValue());
   }
 
-  private sync(): void {
-    const borderColor = this.borderColorSignal();
-    const borderWidth = this.borderWidthSignal();
-    const color = this.colorSignal();
-    const fontSize = this.fontSizeSignal();
-    const fontWeight = this.fontWeightSignal();
-    const padding = this.paddingSignal();
-    const size = this.sizeSignal();
-    const textColor = this.textColorSignal();
-    const translate = this.translateSignal();
-    const value = this.valueSignal();
+  private syncValue(): void {
+    const value = this.resolvedValueSignal();
 
     const badge = this.badge;
     if (badge === undefined) {
       return;
     }
 
-    if (value === 0) {
-      this.renderer.setStyle(badge, 'display', 'none');
-      return;
-    }
-
-    this.renderer.setStyle(badge, 'display', 'flex');
-
-    const hasValue = value !== undefined && value !== '';
-    const defaultSize = hasValue ? '1rem' : '0.5rem';
-
-    this.renderer.setProperty(badge, 'textContent', hasValue ? value.toString() : '');
-    if (hasValue) {
-      this.renderer.removeAttribute(badge, 'aria-hidden');
-    } else {
-      this.renderer.setAttribute(badge, 'aria-hidden', 'true');
-    }
-
-    this.renderer.setStyle(
-      badge,
-      'background-color',
-      color ?? 'var(--x-badge-color, var(--color-red-500))',
-    );
-    this.renderer.setStyle(
-      badge,
-      'border-color',
-      borderColor ?? 'var(--x-badge-border-color, var(--color-white))',
-    );
-    this.renderer.setStyle(
-      badge,
-      'border-width',
-      borderWidth ?? 'var(--x-badge-border-width, 1px)',
-    );
-    this.renderer.setStyle(
-      badge,
-      'color',
-      textColor ?? 'var(--x-badge-text-color, var(--color-white))',
-    );
-    this.renderer.setStyle(badge, 'font-size', fontSize ?? 'var(--x-badge-font-size, 0.5rem)');
-    this.renderer.setStyle(
-      badge,
-      'font-weight',
-      fontWeight ?? 'var(--x-badge-font-weight, var(--font-weight-normal))',
-    );
-    this.renderer.setStyle(badge, 'height', size ?? `var(--x-badge-size, ${defaultSize})`);
-    this.renderer.setStyle(badge, 'min-width', size ?? `var(--x-badge-size, ${defaultSize})`);
-    this.renderer.setStyle(
-      badge,
-      'padding',
-      hasValue ? (padding ?? 'var(--x-badge-padding, 0 0.25rem)') : '0',
-    );
-    this.renderer.setStyle(badge, 'translate', translate ?? 'var(--x-badge-translate, 50% -50%)');
+    this.renderer.setProperty(badge, 'textContent', value ?? '');
+    this.renderer.setAttribute(badge, 'aria-hidden', value === undefined ? 'true' : 'false');
   }
 }
