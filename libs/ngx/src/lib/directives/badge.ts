@@ -48,6 +48,9 @@ export class BadgeDirective {
   public readonly fontWeightSignal = input<string | undefined>(undefined, {
     alias: 'xBadgeFontWeight',
   });
+  public readonly isVisibleSignal = input<boolean>(true, {
+    alias: 'xBadgeIsVisible',
+  });
   public readonly paddingXSignal = input<string | undefined>(undefined, {
     alias: 'xBadgePaddingX',
   });
@@ -80,7 +83,7 @@ export class BadgeDirective {
     return this.colorSignal() ?? 'var(--x-badge-color, var(--color-red-500))';
   });
   public readonly resolvedDisplaySignal = computed(() => {
-    return this.valueSignal() !== 0 ? 'flex' : 'none';
+    return this.isVisibleSignal() && this.valueSignal() !== 0 ? 'flex' : 'none';
   });
   public readonly resolvedFontSizeSignal = computed(() => {
     return this.fontSizeSignal() ?? 'var(--x-badge-font-size, 0.5rem)';
@@ -140,6 +143,7 @@ export class BadgeDirective {
           'py-(--x-badge-resolved-padding-y)',
           'right-0',
           'rounded-full',
+          'select-none',
           'text-(--x-badge-resolved-text-color)',
           'text-(length:--x-badge-resolved-font-size)',
           'top-0',
