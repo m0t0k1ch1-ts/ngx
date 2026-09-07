@@ -11,8 +11,8 @@
     "@angular/common": "^22.1.0",
     "@angular/core": "^22.1.0",
     "@angular/forms": "^22.1.0",
-    "@ng-icons/core": "^35.0.0",
-    "@ng-icons/heroicons": "^35.0.0",
+    "@ng-icons/core": "^35.1.0",
+    "@ng-icons/heroicons": "^35.1.0",
     "tailwindcss": "^4.3.0"
   },
   "sideEffects": false
