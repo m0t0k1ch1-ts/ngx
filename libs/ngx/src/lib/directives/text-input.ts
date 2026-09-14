@@ -2,6 +2,7 @@ import { Directive, computed, input } from '@angular/core';
 
 @Directive({
   selector: '[xTextInput]',
+  exportAs: 'xTextInput',
   host: {
     class:
       'block rounded-(--x-text-input-resolved-border-radius) border border-(--x-text-input-resolved-border-color) px-(--x-text-input-resolved-padding-x) py-(--x-text-input-resolved-padding-y) transition-colors outline-none focus:border-(--x-text-input-resolved-focused-border-color) focus:ring-1 focus:ring-(--x-text-input-resolved-focused-border-color)',

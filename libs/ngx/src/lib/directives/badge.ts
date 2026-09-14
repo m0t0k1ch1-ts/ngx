@@ -11,6 +11,7 @@ import {
 
 @Directive({
   selector: '[xBadge]',
+  exportAs: 'xBadge',
   host: {
     class: 'relative',
     '[style]': `{
