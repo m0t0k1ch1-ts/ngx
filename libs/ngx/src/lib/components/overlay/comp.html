@@ -7,10 +7,8 @@
     animate.leave="leave"
     (click)="onClicked()"
   >
-    @if (isVisible) {
-      <div (click)="$event.stopPropagation()">
-        <ng-content />
-      </div>
-    }
+    <div (click)="$event.stopPropagation()">
+      <ng-content />
+    </div>
   </div>
 }
