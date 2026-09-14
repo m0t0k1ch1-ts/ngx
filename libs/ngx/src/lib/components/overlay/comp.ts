@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, model } from '@angular/core';
 
 @Component({
   selector: 'x-overlay',
@@ -16,11 +16,15 @@ export class OverlayComponent {
   public readonly colorSignal = input<string | undefined>(undefined, {
     alias: 'color',
   });
-  public readonly isVisibleSignal = input.required<boolean>({
-    alias: 'isVisible',
+  public readonly isCloseOnClickDisabledSignal = input(false, {
+    alias: 'isCloseOnClickDisabled',
   });
   public readonly zIndexSignal = input<string | number | undefined>(undefined, {
     alias: 'zIndex',
+  });
+
+  public readonly isVisibleSignal = model.required<boolean>({
+    alias: 'isVisible',
   });
 
   public readonly resolvedColorSignal = computed(() => {
@@ -32,4 +36,13 @@ export class OverlayComponent {
   public readonly resolvedZIndexSignal = computed(() => {
     return this.zIndexSignal() ?? 'var(--x-overlay-z-index, 50)';
   });
+
+  public onClicked(): void {
+    const isCloseOnClickDisabled = this.isCloseOnClickDisabledSignal();
+    if (isCloseOnClickDisabled) {
+      return;
+    }
+
+    this.isVisibleSignal.set(false);
+  }
 }
