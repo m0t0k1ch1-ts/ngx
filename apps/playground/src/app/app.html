@@ -103,7 +103,6 @@
 <x-overlay
   color="color-mix(in oklab, var(--color-black) 80%, transparent)"
   [isVisible]="isOverlayVisible"
-  [zIndex]="30"
   (click)="onOverlayClicked()"
 >
   <div class="flex flex-col">
@@ -113,13 +112,13 @@
   </div>
 </x-overlay>
 
-<div class="fixed top-0 z-40 flex w-dvw justify-center">
+<div class="fixed top-0 z-(--top-toast-container-z-index) flex w-dvw justify-center">
   <div class="w-full max-w-4xl">
     <x-toast-container [id]="topToastContainerID" />
   </div>
 </div>
 
-<div class="fixed bottom-0 z-50 flex w-dvw justify-center">
+<div class="fixed bottom-0 z-(--bottom-toast-container-z-index) flex w-dvw justify-center">
   <div class="w-full max-w-4xl">
     <x-toast-container [id]="bottomToastContainerID" />
   </div>
