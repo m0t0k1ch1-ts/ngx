@@ -2,9 +2,9 @@ import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'x-loader',
+  templateUrl: './comp.html',
+  styleUrls: ['./comp.css'],
   imports: [],
-  templateUrl: './loader.html',
-  styleUrl: './loader.css',
 })
 export class LoaderComponent {
   public readonly sizeSignal = input<string>('80px', {

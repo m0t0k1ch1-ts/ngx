@@ -2,13 +2,13 @@ import { Component, computed, inject, input } from '@angular/core';
 
 import { ToastService } from '../../services';
 
-import { ToastComponent } from '../toast/toast';
+import { ToastComponent } from '../toast/comp';
 
 @Component({
   selector: 'x-toast-container',
+  templateUrl: './comp.html',
+  styleUrls: ['./comp.css'],
   imports: [ToastComponent],
-  templateUrl: './toast-container.html',
-  styleUrl: './toast-container.css',
 })
 export class ToastContainerComponent {
   private readonly toastService = inject(ToastService);
