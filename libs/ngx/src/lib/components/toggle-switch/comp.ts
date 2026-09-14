@@ -3,9 +3,8 @@ import { FormCheckboxControl } from '@angular/forms/signals';
 
 @Component({
   selector: 'x-toggle-switch',
+  templateUrl: './comp.html',
   imports: [],
-  templateUrl: './toggle-switch.html',
-  styleUrl: './toggle-switch.css',
   host: {
     '[style]': `{
       '--x-toggle-switch-resolved-checked-background-color': resolvedCheckedBackgroundColorSignal(),

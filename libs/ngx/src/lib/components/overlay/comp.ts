@@ -2,9 +2,9 @@ import { Component, computed, input } from '@angular/core';
 
 @Component({
   selector: 'x-overlay',
+  templateUrl: './comp.html',
+  styleUrls: ['./comp.css'],
   imports: [],
-  templateUrl: './overlay.html',
-  styleUrl: './overlay.css',
   host: {
     '[style]': `{
       '--x-overlay-resolved-color': resolvedColorSignal(),

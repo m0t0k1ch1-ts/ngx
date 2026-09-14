@@ -12,9 +12,8 @@ import { Toast } from '../../types';
 
 @Component({
   selector: 'x-toast',
+  templateUrl: './comp.html',
   imports: [NgIcon],
-  templateUrl: './toast.html',
-  styleUrl: './toast.css',
   providers: [provideIcons({ heroCheckCircleSolid, heroExclamationCircleSolid, heroXMarkSolid })],
 })
 export class ToastComponent {
