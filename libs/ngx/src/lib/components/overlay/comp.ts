@@ -38,8 +38,7 @@ export class OverlayComponent {
   });
 
   public onClicked(): void {
-    const isCloseOnClickDisabled = this.isCloseOnClickDisabledSignal();
-    if (isCloseOnClickDisabled) {
+    if (this.isCloseOnClickDisabledSignal()) {
       return;
     }
 
