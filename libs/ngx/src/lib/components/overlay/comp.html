@@ -2,10 +2,15 @@
 
 @if (isVisible) {
   <div
-    class="overlay fixed inset-0 z-(--x-overlay-resolved-z-index) flex flex-col items-center justify-center bg-(--x-overlay-resolved-color)"
+    class="root fixed inset-0 z-(--x-overlay-resolved-z-index) flex flex-col items-center justify-center bg-(--x-overlay-resolved-color)"
     animate.enter="enter"
     animate.leave="leave"
+    (click)="onClicked()"
   >
-    <ng-content />
+    @if (isVisible) {
+      <div (click)="$event.stopPropagation()">
+        <ng-content />
+      </div>
+    }
   </div>
 }
