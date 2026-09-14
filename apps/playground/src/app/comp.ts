@@ -84,10 +84,6 @@ export class App {
     this.isOverlayVisibleSignal.set(true);
   }
 
-  public onOverlayClicked(): void {
-    this.isOverlayVisibleSignal.set(false);
-  }
-
   public onAddSuccessToastButtonClicked(): void {
     this.toastService.add({
       containerID: this.topToastContainerID,
