@@ -6,6 +6,13 @@
   --font-outfit: 'Outfit Variable', sans-serif;
 }
 
+:root {
+  --x-overlay-z-index: 100;
+
+  --top-toast-container-z-index: 1000;
+  --bottom-toast-container-z-index: 1001;
+}
+
 button.gray,
 button.green,
 button.red {

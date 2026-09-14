@@ -19,7 +19,7 @@ export class OverlayComponent {
   public readonly isVisibleSignal = input.required<boolean>({
     alias: 'isVisible',
   });
-  public readonly zIndexSignal = input<number | undefined>(undefined, {
+  public readonly zIndexSignal = input<string | number | undefined>(undefined, {
     alias: 'zIndex',
   });
 
