@@ -29,6 +29,8 @@ type FormInput = z.infer<typeof formSchema>;
 
 @Component({
   selector: 'app-root',
+  templateUrl: './comp.html',
+  styleUrls: ['./comp.css'],
   imports: [
     FormField,
     FormRoot,
@@ -41,8 +43,6 @@ type FormInput = z.infer<typeof formSchema>;
     ToastContainerComponent,
     ToggleSwitchComponent,
   ],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
   viewProviders: [provideIcons({ heroBell })],
 })
 export class App {
