@@ -11,6 +11,7 @@ import {
 
 @Directive({
   selector: '[xRipple]',
+  exportAs: 'xRipple',
   host: {
     class: 'x-ripple',
     '[style]': `{
