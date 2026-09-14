@@ -1,6 +1,6 @@
 import { Component, computed, inject, input } from '@angular/core';
 
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { IconName, NgIcon, provideIcons } from '@ng-icons/core';
 import {
   heroCheckCircleSolid,
   heroExclamationCircleSolid,
@@ -46,7 +46,7 @@ export class ToastComponent {
         return 'var(--color-red-500)';
     }
   });
-  public readonly iconNameSignal = computed(() => {
+  public readonly iconNameSignal = computed<IconName>(() => {
     switch (this.toastSignal().type) {
       case 'SUCCESS':
         return 'heroCheckCircleSolid';
