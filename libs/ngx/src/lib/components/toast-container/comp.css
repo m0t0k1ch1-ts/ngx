@@ -1,13 +1,12 @@
 x-toast.enter {
-  animation: enter 300ms ease-out;
+  animation: fade-up 300ms ease-out;
 }
 
 x-toast.leave {
-  opacity: 0;
-  transition: opacity 300ms ease-in;
+  animation: fade-out 300ms ease-in;
 }
 
-@keyframes enter {
+@keyframes fade-up {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -15,5 +14,14 @@ x-toast.leave {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
